@@ -329,7 +329,16 @@
 			<artifactId>cfg4j-git</artifactId>
 			<version>4.4.0</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.axonframework</groupId>
+			<artifactId>axon-core</artifactId>
+			<version>2.4.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.axonframework</groupId>
+			<artifactId>axon-test</artifactId>
+			<version>2.4.5</version>
+		</dependency>
 	</dependencies>
 
 	<build>

@@ -117,6 +117,13 @@
 			<version>1.0.8</version>
 		</dependency>
 
+		<!-- protobuf -->
+		<dependency>
+			<groupId>com.google.protobuf</groupId>
+			<artifactId>protobuf-java</artifactId>
+			<version>2.5.0</version>
+		</dependency>
+
 		<!-- ZooKeeper -->
 		<dependency>
 			<groupId>org.apache.zookeeper</groupId>

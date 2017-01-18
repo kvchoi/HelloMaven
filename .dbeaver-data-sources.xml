@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data-sources>
+	<data-source id="h2_server-159b0b4b308-4d4259641a7e6158" provider="generic" driver="h2_server" name="H2 - test" save-password="true" show-system-objects="true" read-only="false">
+		<connection host="localhost" port="9123" server="" database="~/test" url="jdbc:h2:tcp://localhost:9123/~/test" user="sa" password="AAVmwQ==" type="dev">
+			<network-handler type="PROXY" id="socks_proxy" enabled="false" save-password="false">
+				<property name="socks-port" value="1080"/>
+			</network-handler>
+			<network-handler type="TUNNEL" id="ssh_tunnel" enabled="false" save-password="false">
+				<property name="sshConnectTimeout" value="10000"/>
+				<property name="authType" value="PASSWORD"/>
+				<property name="port" value="22"/>
+			</network-handler>
+		</connection>
+	</data-source>
+	<data-source id="mysql5-159b0b4b308-6de37571d2b651ca" provider="mysql" driver="mysql5" name="MySQL - localhost" save-password="true" show-system-objects="true" read-only="false">
+		<connection host="localhost" port="3306" server="" database="" url="jdbc:mysql://localhost:3306/" user="root" type="dev">
+			<network-handler type="PROXY" id="socks_proxy" enabled="false" save-password="false">
+				<property name="socks-port" value="1080"/>
+			</network-handler>
+			<network-handler type="TUNNEL" id="ssh_tunnel" enabled="false" save-password="false">
+				<property name="sshConnectTimeout" value="10000"/>
+				<property name="authType" value="PASSWORD"/>
+				<property name="port" value="22"/>
+			</network-handler>
+			<network-handler type="CONFIG" id="mysql_ssl" enabled="false" save-password="false">
+				<property name="ssl.public.key.retrieve" value="false"/>
+				<property name="ssl.verify.server" value="true"/>
+				<property name="ssl.require" value="false"/>
+			</network-handler>
+		</connection>
+	</data-source>
+</data-sources>

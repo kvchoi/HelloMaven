@@ -43,7 +43,7 @@ public class HikariCPTest {
         HikariConfig config = new HikariConfig();
         config.setMaximumPoolSize(100);
         config.setDataSourceClassName(JdbcDataSource.class.getName());
-        config.addDataSourceProperty("URL", "jdbc:h2:tcp://localhost/~/test");
+        config.addDataSourceProperty("URL", "jdbc:h2:tcp://localhost:9123/~/test");
         config.addDataSourceProperty("user", "sa");
         config.addDataSourceProperty("password", "sa");
 

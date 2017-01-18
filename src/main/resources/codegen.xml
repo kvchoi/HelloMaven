@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<configuration xmlns="http://www.jooq.org/xsd/jooq-codegen-2.3.0.xsd">
+<configuration xmlns="http://www.jooq.org/xsd/jooq-codegen-3.8.0.xsd">
 	<jdbc>
 		<driver>org.h2.Driver</driver>
-		<url>jdbc:h2:tcp://localhost/~/test</url>
+		<url>jdbc:h2:tcp://localhost:9123/~/test</url>
 		<user>sa</user>
 		<password>sa</password>
 	</jdbc>
@@ -20,6 +20,7 @@
 		<target>
 			<packageName>org.jooq.h2.generated</packageName>
 			<directory>./src/main/java</directory>
+			<encoding>UTF-8</encoding>
 		</target>
 	</generator>
 </configuration>

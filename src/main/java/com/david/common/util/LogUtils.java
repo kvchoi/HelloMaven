@@ -11,7 +11,7 @@ import org.apache.log4j.Logger;
 /**
  *
  * @author zhangwei_david
- * @version $Id: LogUtils.java, v 0.1 2014年11月27日 上午11:41:22 zhangwei_david Exp $
+ * @version $Id: LogUtils.java
  */
 public class LogUtils {
 
@@ -32,7 +32,7 @@ public class LogUtils {
     }
 
     public static final void error(Logger logger, String pattern, Throwable throwable,
-                                   Object... args) {
+            Object... args) {
         logger.error(MessageFormat.format(pattern, args), throwable);
     }
 

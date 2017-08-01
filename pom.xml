@@ -307,6 +307,11 @@
 			<artifactId>async-http-client</artifactId>
 			<version>1.9.40</version>
 		</dependency>
+		<dependency>
+			<groupId>com.baqend</groupId>
+			<artifactId>bloom-filter</artifactId>
+			<version>1.2.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>

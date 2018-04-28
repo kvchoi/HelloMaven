@@ -1,0 +1,35 @@
+name : zero
+expression : "$.person == null"
+outcome : ZT2011
+priority : 4
+description :
+---
+name : one
+expression : "$.person != null && $.person.age < 26"
+outcome : YT2011
+priority : 3
+description :
+---
+name : two
+expression : "$.person.age > 59"
+outcome : ST2011
+priority : 3
+description :
+---
+name : three
+expression : "!#one && !#two"
+outcome : DT2011
+priority : 3
+description :
+---
+name : four
+expression : "#three && $.account.ageInMonths > 24"
+outcome : LT2011
+priority : 1
+description :
+---
+name : five
+expression : true
+outcome : default
+priority : -1
+description :

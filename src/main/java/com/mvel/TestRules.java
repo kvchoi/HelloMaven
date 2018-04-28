@@ -1,11 +1,15 @@
 package com.mvel;
 
-import java.util.Arrays;
+import java.io.File;
+import java.io.FileReader;
+import java.net.URL;
 import java.util.List;
 
 import ch.maxant.rules.Engine;
 import ch.maxant.rules.IAction;
 import ch.maxant.rules.Rule;
+import com.esotericsoftware.yamlbeans.YamlConfig;
+import com.esotericsoftware.yamlbeans.YamlReader;
 import com.google.common.collect.Lists;
 import com.mvel.TestRules.TarifRequest.Account;
 import com.mvel.TestRules.TarifRequest.Person;
@@ -20,18 +24,28 @@ public class TestRules {
         testRules();
     }
 
+    public static List<Rule> loadRules() throws Exception {
+        URL url = ClassLoader.getSystemResource("rules.yml");
+        YamlConfig config = new YamlConfig();
+        config.readConfig.setIgnoreUnknownProperties(true);
+        YamlReader reader = new YamlReader(new FileReader(new File(url.toURI())), config);
+        List<Rule> rules = Lists.newArrayList();
+        while (true) {
+            RuleDef ruleDef = reader.read(RuleDef.class);
+            if (ruleDef == null) { break; }
+            //TODO 检查规则配置是否正确
+            rules.add(ruleDef.toRule());
+            System.out.println(ruleDef.toString());
+        }
+        return rules;
+    }
+
     public static void testRules() throws Exception {
-        Rule r0 = new Rule("zero", "input.person == null", "ZT2011", 4, "rule_group_1", null);
-        Rule r1 = new Rule("one", "input.person != null && input.person.age < 26", "YT2011", 3, "rule_group_1", null);
-        Rule r2 = new Rule("two", "input.person.age > 59", "ST2011", 3, "rule_group_1", null);
-        Rule r3 = new Rule("three", "!#one && !#two", "DT2011", 3, "rule_group_1", null);
-        Rule r4 = new Rule("four", "#three && input.account.ageInMonths > 24", "LT2011", 4, "rule_group_1", null);
-        // 默认规则
-        Rule defaultRule = new Rule("five", "true", "default", -1, "rule_group_1", null);
-        List<Rule> rules = Arrays.asList(r0, r1, r2, r3, r4, defaultRule);
+        // 加载规则配置
+        List<Rule> rules = loadRules();
 
         // 初始化并用MVEL解析器编译规则
-        Engine engine = new Engine(rules, "input", true);
+        Engine engine = new Engine(rules, "$", true);
 
         TarifRequest request = new TarifRequest();
         request.setPerson(new Person());

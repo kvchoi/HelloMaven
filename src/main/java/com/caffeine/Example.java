@@ -13,7 +13,7 @@ public class Example {
     public static void main(String[] args) throws Exception {
         LoadingCache<Object, Object> cache = Caffeine.newBuilder().maximumSize(10_000)
                 .expireAfterWrite(5, TimeUnit.MINUTES).refreshAfterWrite(3, TimeUnit.SECONDS)
-                .build(key -> createExpensiveGraph(key));
+                .build(Example::createExpensiveGraph);
         cache.put("key", "value");
         Object value = cache.get("key");
         System.out.println(value);

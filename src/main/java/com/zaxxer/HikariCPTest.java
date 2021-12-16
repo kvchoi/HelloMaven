@@ -15,14 +15,19 @@ public class HikariCPTest {
     public static void main(String[] args) {
         try {
             // mysql();
-            h2();
+            Connection c = h2();
+            // do query
+            PreparedStatement p = c.prepareStatement("select 1");
+            boolean result = p.execute();
+            System.out.println(result);
+
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
 
-    public static void mysql() throws SQLException {
+    public static Connection mysql() throws SQLException {
         HikariConfig config = new HikariConfig();
         config.setMaximumPoolSize(100);
         config.setDataSourceClassName(MysqlDataSource.class.getName());
@@ -34,12 +39,10 @@ public class HikariCPTest {
 
         HikariDataSource ds = new HikariDataSource(config);
         Connection c = ds.getConnection();
-        PreparedStatement p = c.prepareStatement("select 1");
-        boolean result = p.execute();
-        System.out.println(result);
+        return c;
     }
 
-    public static void h2() throws SQLException {
+    public static Connection h2() throws SQLException {
         HikariConfig config = new HikariConfig();
         config.setMaximumPoolSize(100);
         config.setDataSourceClassName(JdbcDataSource.class.getName());
@@ -50,8 +53,7 @@ public class HikariCPTest {
         HikariDataSource ds = new HikariDataSource(config);
         ds.setConnectionTestQuery("select 1");
         Connection c = ds.getConnection();
-        PreparedStatement p = c.prepareStatement("select 1");
-        boolean result = p.execute();
-        System.out.println(result);
+        return c;
     }
+
 }

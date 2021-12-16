@@ -390,6 +390,13 @@
             <artifactId>jmh-generator-annprocess</artifactId>
             <version>1.33</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/dev.failsafe/failsafe -->
+        <dependency>
+            <groupId>dev.failsafe</groupId>
+            <artifactId>failsafe</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

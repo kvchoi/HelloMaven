@@ -7,7 +7,7 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 
 import java.nio.charset.StandardCharsets;
 
-public class SimpleClientHandler extends ChannelInboundHandlerAdapter {
+public class PrintClientHandler extends ChannelInboundHandlerAdapter {
 
     private int count;
 
@@ -16,7 +16,7 @@ public class SimpleClientHandler extends ChannelInboundHandlerAdapter {
         System.out.println("客户端和服务端成功建立连接");
         //客户端和服务端建立连接后，发送十次消息给服务端
         for (int i = 0; i < 10; i++) {
-            ByteBuf buf = Unpooled.copiedBuffer("客户端消息" + i, StandardCharsets.UTF_8);
+            ByteBuf buf = Unpooled.copiedBuffer("客户端消息" + i + "&", StandardCharsets.UTF_8);
             ctx.writeAndFlush(buf);
         }
         super.channelActive(ctx);

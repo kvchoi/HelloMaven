@@ -1,15 +1,17 @@
 package com.netty;
 
 import io.netty.bootstrap.ServerBootstrap;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.handler.codec.FixedLengthFrameDecoder;
+import io.netty.handler.codec.DelimiterBasedFrameDecoder;
 
-public class PackageNettyServer {
+public class DecoderNettyServer {
 
     public static void main(String[] args) {
         EventLoopGroup bossGroup = new NioEventLoopGroup();
@@ -21,9 +23,10 @@ public class PackageNettyServer {
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
+                            ByteBuf delimiter = Unpooled.copiedBuffer("&".getBytes());
                             ch.pipeline()
-                                    //.addLast(new FixedLengthFrameDecoder(6)) //增加解码器
-                                    .addLast(new SimpleServerHandler());
+                                    .addLast(new DelimiterBasedFrameDecoder(20, true, true, delimiter))
+                                    .addLast(new PrintServerHandler());
                         }
                     });
             ChannelFuture channelFuture = serverBootstrap.bind(8080).sync(); //绑定端口
@@ -31,8 +34,7 @@ public class PackageNettyServer {
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
-            bossGroup.shutdownGracefully();
-            workGroup.shutdownGracefully();
+
         }
     }
 }

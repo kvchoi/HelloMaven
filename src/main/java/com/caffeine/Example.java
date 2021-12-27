@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 import com.common.utils.ByteArrayUtils;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.github.benmanes.caffeine.cache.LoadingCache;
+import com.google.common.collect.ImmutableList;
 import com.google.common.hash.Funnels;
 import com.google.common.hash.Hashing;
 import org.apache.commons.lang3.tuple.ImmutablePair;
@@ -33,6 +34,9 @@ public class Example {
         Triple<String, String, String> triple = Triple.of("key", "key2", "key3");
         Object value4 = cache.get(triple);
         System.out.println(value4);
+        ImmutableList<Object> dynamic = ImmutableList.of("key", "key2", "key3", "key4", 999_999);
+        Object value5 = cache.get(dynamic);
+        System.out.println(value5);
     }
 
     private static Object createExpensiveGraph(Object key) {

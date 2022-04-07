@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 @State(Scope.Benchmark)
 public class MyBenchmark {
     int i;
-    final SpinLock lock = new SpinLock();
+    final SimpleSpinLock lock = new SimpleSpinLock();
     final Object object = new Object();
 
     @Setup

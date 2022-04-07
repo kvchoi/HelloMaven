@@ -2,7 +2,12 @@ package com.lock;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class SpinLock {
+/**
+ * 简单自旋锁
+ *
+ * @author cairongfu
+ */
+public class SimpleSpinLock {
 
     private final AtomicBoolean spinLock = new AtomicBoolean(false);
 

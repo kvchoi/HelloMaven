@@ -1,14 +1,11 @@
 package com.algorithm.back_track;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * 回溯法
  */
 public class NumsCombineToK {
-
 
     public static void main(String[] args) {
         int[] nums = new int[]{0, 1, 4, 4, 8};
@@ -19,13 +16,18 @@ public class NumsCombineToK {
 
         //force(nums, k, ans);
 
-        fast(nums, k, ans);
+        //fast(nums, k, ans);
+
+        Deque<Integer> path = new ArrayDeque<>();
+        dfs(nums, k, 0, path, ans);
 
         System.out.println(ans);
 
     }
 
     /**
+     * 组合遍历法（从所有组合中取出k个元素的组合）
+     *
      * 第一重循环复杂度为O(2^n)，第二重最多O(32)，整体还是O(2^n)
      */
     public static void fast(int[] nums, int k, List<List<Integer>> ans) {
@@ -65,6 +67,8 @@ public class NumsCombineToK {
     }
 
     /**
+     * 暴力遍历法
+     *
      * 每一层for都是O(n)，根据k的个数叠加，整体是O(n^k)
      */
     public static void force(int[] nums, int k, List<List<Integer>> ans) {
@@ -100,5 +104,28 @@ public class NumsCombineToK {
         }
     }
 
+    /**
+     * 深度优先遍历法
+     */
+    public static void dfs(int[] nums, int k, int index, Deque<Integer> path, List<List<Integer>> ans) {
+        // 递归终止条件是：path 的长度等于 k
+        if (path.size() == k) {
+            ans.add(new ArrayList<>(path));
+            return;
+        }
+        // 遍历所有可能的搜索起点，但是可以有一个提前剪枝条件：即剩下的数已经不可能够凑够k个了
+        for (int i = index; i < nums.length - (k - path.size()) + 1; i++) {
+            // 同一层前后两个相同值，不重复取
+            if (i == index || nums[i] != nums[i - 1]) {
+                // 向路径变量里添加一个数
+                path.addLast(nums[i]);
+                // 下一轮搜索，设置的搜索起点要加 1，因为组合数理不允许出现重复的元素
+                dfs(nums, k, i + 1, path, ans);
+                // 重点理解这里：深度优先遍历有回头的过程，因此递归之前做了什么，递归之后需要做相同操作的逆向操作
+                path.removeLast();
+            }
+        }
+
+    }
 
 }

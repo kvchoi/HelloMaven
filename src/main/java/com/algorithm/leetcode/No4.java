@@ -1,5 +1,8 @@
 package com.algorithm.leetcode;
 
+/**
+ * 寻找两个正序数组的中位数
+ */
 public class No4 {
 
     public static void main(String[] args) {
@@ -15,27 +18,40 @@ public class No4 {
         int len = nums1.length + nums2.length;
         int u = 0;
         int d = 0;
-        int last = 0;
-        for (int i = 0; i < len/2; i++) {
+        int select = 0;
+        // 中位数一定出现在两数组总长度的中间，考虑奇偶数情况
+        for (int i = 0; i < len/2 + len%2; i++) {
             if (u < nums1.length && d < nums2.length) {
+                // 两数组均未取完，则确定取一个小值
                 if (nums1[u] <= nums2[d]) {
-                    last = nums1[u];
-                    u = u < nums1.length - 1? u+1 : u;
+                    select = nums1[u];
+                    u++;
                 } else {
-                    last = nums2[d];
-                    d = d < nums2.length - 1? d+1 : u;
+                    select = nums2[d];
+                    d++;
                 }
             } else if (u < nums1.length) {
-                last = nums1[u];
-                u = u < nums1.length - 1? u+1 : u;
+                // 下数组取完
+                select = nums1[u];
+                u++;
             } else if (d < nums2.length) {
-                last = nums2[d];
-                d = d < nums2.length - 1? d+1 : u;
+                // 上数组取完
+                select = nums2[d];
+                d++;
             } else {
                 break;
             }
         }
-        int min = Math.min(nums1[u], nums2[d]);
-        return len % 2 == 0 ? (last + min) * 1.0 / 2 : min;
+        // 取完二分之一的数后，最后指针处有一个最小的待选值
+        int cur = 0;
+        if (u < nums1.length && d < nums2.length) {
+            cur = Math.min(nums1[u],  nums2[d]);
+        } else if (u < nums1.length) {
+            cur = nums1[u];
+        } else if (d < nums2.length) {
+            cur = nums2[d];
+        }
+        // 结合奇偶数组的情况：奇数时，就是已选值；偶数时，需要已选值和当前值的平均。
+        return len % 2 == 0 ? (select + cur) * 1.0 / 2 : select;
     }
 }

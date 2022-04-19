@@ -1,4 +1,4 @@
-package com.common.threads;
+package com.common.threads.exception;
 
 import java.util.concurrent.TimeUnit;
 

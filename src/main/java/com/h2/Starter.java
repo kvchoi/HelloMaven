@@ -15,7 +15,7 @@ public class Starter {
             System.out.println("Starting h2 server...");
             System.out.println("Command Line args : " + ArrayUtils.toString(args));
             Server server = Server.createTcpServer(args).start();
-            System.out.println("Started h2 server!");
+            System.out.println("Started h2 server! status=" + server.getStatus());;
         } catch (Exception e) {
             e.printStackTrace();
         }

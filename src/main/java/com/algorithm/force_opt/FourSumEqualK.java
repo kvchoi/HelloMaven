@@ -34,7 +34,7 @@ public class FourSumEqualK {
                                 for(int d=c+1; d < nums.length ; d++) {
                                     if (d == c+1 || nums[d] != nums[d-1]) {
                                         if (nums[a]+nums[b]+nums[c]+nums[d]==target) {
-                                            List<Integer> tmp = new ArrayList();
+                                            List<Integer> tmp = new ArrayList<>(4);
                                             tmp.add(nums[a]);
                                             tmp.add(nums[b]);
                                             tmp.add(nums[c]);

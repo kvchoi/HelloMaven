@@ -2,7 +2,7 @@ package com.bitmap;
 
 import org.roaringbitmap.RoaringBitmap;
 
-import java.util.function.Consumer;
+// import java.util.function.Consumer;
 
 /**
  * 基于高低分段索引的bitmap存储结构（自适应空间，随机访问好）

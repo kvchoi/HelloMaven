@@ -12,6 +12,16 @@ import java.util.Optional;
  */
 public class ByteArrayUtils {
 
+    public static void main(String[] args) {
+        Long kv = new Long(10);
+        Optional<byte[]> opt =  objectToBytes(kv);
+        if (opt.isPresent()) {
+            Optional<Long> optional = bytesToObject(opt.get(), Long.class);
+            System.out.println(optional.get());
+        }
+        
+    }
+
     public static <T> Optional<byte[]> objectToBytes(T obj) {
         byte[] bytes = null;
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -27,17 +37,17 @@ public class ByteArrayUtils {
         return Optional.ofNullable(bytes);
     }
 
-    public static <T> Optional<T> bytesToObject(byte[] bytes) {
+    public static <T> Optional<T> bytesToObject(byte[] bytes, Class<T> clazz) {
         T t = null;
         ByteArrayInputStream in = new ByteArrayInputStream(bytes);
         ObjectInputStream sIn;
         try {
             sIn = new ObjectInputStream(in);
-            t = (T) sIn.readObject();
+            Object o = sIn.readObject();
+            t = clazz.cast(o);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return Optional.ofNullable(t);
-
     }
 }

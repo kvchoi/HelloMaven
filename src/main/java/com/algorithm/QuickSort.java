@@ -31,7 +31,7 @@ public class QuickSort {
 
     }
 
-    private static int getIndex2(int[] array, int left, int right) {
+    public static int getIndex2(int[] array, int left, int right) {
         // base中存放基准数
         int base = array[left];
         int i = left, j = right;

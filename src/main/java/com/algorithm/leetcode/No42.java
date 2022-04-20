@@ -10,9 +10,9 @@ public class No42 {
         int[] arr2 = new int[]{4, 2, 0, 3, 2, 5};
         int[] arr3 = new int[]{2, 0, 2};
         int[] arr4 = new int[]{0,1,0,2,1,0,1,3,2,1,2,1};
-//        System.out.println(trap(arr));
-//        System.out.println(trap(arr2));
-//        System.out.println(trap2(arr3));
+       System.out.println(trap(arr));
+       System.out.println(trap(arr2));
+       System.out.println(trap2(arr3));
         System.out.println(trap2(arr4));
     }
 

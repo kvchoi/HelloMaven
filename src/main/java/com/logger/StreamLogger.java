@@ -33,7 +33,7 @@ public class StreamLogger {
     });
     private MemoryHandler memoryHandler = new MemoryHandler(streamHandler, 1000, Level.FINER);
 
-    public Logger createLogger(Class clz) {
+    public Logger createLogger(Class<?> clz) {
         final Logger logger = Logger.getLogger(clz.getName());
         logger.setUseParentHandlers(false);
         logger.addHandler(memoryHandler);

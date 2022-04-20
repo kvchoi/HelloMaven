@@ -37,9 +37,10 @@ public class HikariCPTest {
         config.addDataSourceProperty("user", "bart");
         config.addDataSourceProperty("password", "51mp50n");
 
-        HikariDataSource ds = new HikariDataSource(config);
-        Connection c = ds.getConnection();
-        return c;
+        try (HikariDataSource ds = new HikariDataSource(config)) {
+            Connection c = ds.getConnection();
+            return c;
+        }
     }
 
     public static Connection h2() throws SQLException {
@@ -50,10 +51,11 @@ public class HikariCPTest {
         config.addDataSourceProperty("user", "sa");
         config.addDataSourceProperty("password", "sa");
 
-        HikariDataSource ds = new HikariDataSource(config);
-        ds.setConnectionTestQuery("select 1");
-        Connection c = ds.getConnection();
-        return c;
+        try (HikariDataSource ds = new HikariDataSource(config)) {
+            ds.setConnectionTestQuery("select 1");
+            Connection c = ds.getConnection();
+            return c;
+        }
     }
 
 }

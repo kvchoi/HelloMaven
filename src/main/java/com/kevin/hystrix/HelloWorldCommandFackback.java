@@ -33,5 +33,6 @@ public class HelloWorldCommandFackback extends HystrixCommand<String> {
     public static void main(String[] args) throws Exception {
         HelloWorldCommand command = new HelloWorldCommand("test-Fallback");
         String result = command.execute();
+        System.out.println(result);
     }
 }

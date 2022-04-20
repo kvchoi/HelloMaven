@@ -7,7 +7,7 @@ import java.util.List;
 public class ThreeSumEqualK {
 
     public static void main(String[] args) {
-        int[] a = new int[]{-1, 0, 1, 2, -1, -4};
+        int[] a = new int[]{1,2,-2,-1};
 
         int target = 0;
 
@@ -24,6 +24,7 @@ public class ThreeSumEqualK {
     public static List<List<Integer>> threeSumFast(int[] a, int target) {
         List<List<Integer>> ans = new ArrayList<>();
         Arrays.sort(a);
+
         for (int i = 0; i < a.length; i++) {
             // 第一重，第一个比较完，后面跳过相同的数
             if (i == 0 || a[i] != a[i - 1]) {
@@ -40,8 +41,10 @@ public class ThreeSumEqualK {
                         while (k > j && a[i] + a[j] + a[k] > target) {
                             // 查找第三个可能合适的数，它必然是在第二个数右边
                             k--;
+                        }// 第三重，如果前后指针相撞，不用看了，必是没有合适的
+                        if (j == k) {
+                            break;
                         }
-
                         // 检查这三元素是否满足要求
                         if (a[i] + a[j] + a[k] == target) {
                             List<Integer> tmp = new ArrayList<>();

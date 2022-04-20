@@ -5,8 +5,8 @@ import java.util.Arrays;
 public class No16 {
 
     public static void main(String[] args) {
-        int[] a = new int[]{-1, 2, 1, -4};
-        int target = 1;
+        int[] a = new int[]{3,4,5,5,7};
+        int target = 13;
         int ret = threeSumClosest(a, target);
         System.out.println(ret);
     }
@@ -37,7 +37,7 @@ public class No16 {
                 }
                 // 从坐标远离距离上判断是否接近，并记录找到的第一个最接近的组合
                 if (Math.abs(sum - target) < min) {
-                    min = Math.abs(sum) - target;
+                    min = Math.abs(sum - target);
                     a = i;
                     b = l;
                     c = r;
@@ -46,17 +46,9 @@ public class No16 {
                 if (sum > target) {
                     // 超过目标时，尝试缩小大值
                     r--;
-                    while (r - 1 > l && nums[r] == nums[r - 1]) {
-                        // 还可以再走一步，因此前面有个值一样的
-                        r--;
-                    }
                 } else {
                     // 小于目标时，尝试增加小值
                     l++;
-                    while ((l + 1 < r && nums[l] == nums[l + 1])) {
-                        // 还可以再走一步，因此前面有个值一样的
-                        l++;
-                    }
                 }
             }
         }

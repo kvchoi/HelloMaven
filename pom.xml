@@ -365,6 +365,11 @@
         </dependency>
         <!-- easy-rules -->
         <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>QLExpress</artifactId>
+            <version>3.2.0</version>
+        </dependency>
+        <dependency>
             <groupId>com.esotericsoftware.yamlbeans</groupId>
             <artifactId>yamlbeans</artifactId>
             <version>1.13</version>
